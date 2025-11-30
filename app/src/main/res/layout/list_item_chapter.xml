@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="8dp"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="16dp"
     android:fitsSystemWindows="true"
-    app:cardElevation="2dp">
+    app:cardElevation="4dp"
+    app:rippleColor="@color/shadow_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="18dp">
 
         <ImageView
             android:id="@+id/ivChapterIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_launcher_foreground"
             app:tint="@color/primary_blue"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +32,7 @@
             android:textColor="@color/primary_blue"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:letterSpacing="0.01"
             app:layout_constraintEnd_toStartOf="@+id/btnLearnNow"
             app:layout_constraintStart_toEndOf="@+id/ivChapterIcon"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,19 +42,20 @@
             android:id="@+id/tvLessonCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:textColor="@color/color_text"
-            android:textSize="12sp"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/tvChapterTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvChapterTitle"
             tools:text="X lessons" />
 
-        <!-- ADDED: ProgressBar for chapter progress -->
+        <!-- ProgressBar for chapter progress -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:progressDrawable="@drawable/bg_progress_bar"
             app:layout_constraintEnd_toEndOf="@+id/tvChapterTitle"
             app:layout_constraintStart_toStartOf="@+id/tvChapterTitle"
@@ -64,10 +67,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_button_yellow_rounded"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="10dp"
             android:text="@string/learn_now"
             android:textColor="@color/primary_blue"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,4 +79,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

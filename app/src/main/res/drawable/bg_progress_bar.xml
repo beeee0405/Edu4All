@@ -4,17 +4,20 @@
     <!-- Background color for the progress bar -->
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="4dp" />
-            <solid android:color="#E0E0E0" />
+            <corners android:radius="8dp" />
+            <solid android:color="@color/divider_color" />
         </shape>
     </item>
 
-    <!-- Progress color -->
+    <!-- Progress color with gradient -->
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="4dp" />
-                <solid android:color="@color/color_yellow" />
+                <corners android:radius="8dp" />
+                <gradient
+                    android:startColor="@color/color_yellow_dark"
+                    android:endColor="@color/color_yellow"
+                    android:angle="0" />
             </shape>
         </clip>
     </item>
