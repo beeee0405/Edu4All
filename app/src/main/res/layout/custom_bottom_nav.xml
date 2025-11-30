@@ -2,99 +2,122 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:background="#FFD700"
+    android:layout_height="64dp"
+    android:background="@drawable/bg_bottom_nav"
     android:gravity="center"
     android:orientation="horizontal"
     android:fitsSystemWindows="true"
-    android:padding="8dp">
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="8dp"
+    android:elevation="8dp">
 
     <LinearLayout
         android:id="@+id/nav_home"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="4dp">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:id="@+id/nav_home_icon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:src="@drawable/house_solid_full"
-            android:tint="@android:color/white" />
+            android:tint="@color/primary_blue" />
 
         <TextView
-            android:layout_width="38dp"
-            android:layout_height="11dp"
+            android:id="@+id/nav_home_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Trang chủ"
-            android:textColor="#fff"
-            android:textSize="8sp" />
+            android:textColor="@color/primary_blue"
+            android:textSize="10sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nav_search"
         android:layout_width="0dp"
-        android:layout_height="39dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="4dp">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:id="@+id/nav_search_icon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:src="@drawable/magnifying_glass_solid_full"
-            android:tint="@android:color/white" />
+            android:tint="@color/primary_blue" />
 
         <TextView
+            android:id="@+id/nav_search_text"
             android:layout_width="wrap_content"
-            android:layout_height="11dp"
-            android:text="Tìm kiếm bài học"
-            android:textColor="@android:color/white"
-            android:textSize="8sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Tìm kiếm"
+            android:textColor="@color/primary_blue"
+            android:textSize="10sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nav_save"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="4dp">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:id="@+id/nav_save_icon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:src="@drawable/book_bookmark_solid_full"
-            android:tint="@android:color/white" />
+            android:tint="@color/primary_blue" />
 
         <TextView
+            android:id="@+id/nav_save_text"
             android:layout_width="wrap_content"
-            android:layout_height="11dp"
-            android:text="Lưu bài học"
-            android:textColor="@android:color/white"
-            android:textSize="8sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Đã lưu"
+            android:textColor="@color/primary_blue"
+            android:textSize="10sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nav_settings"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="4dp">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:id="@+id/nav_settings_icon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:src="@drawable/gear_solid_full"
-            android:tint="@android:color/white" />
+            android:tint="@color/primary_blue" />
 
         <TextView
+            android:id="@+id/nav_settings_text"
             android:layout_width="wrap_content"
-            android:layout_height="11dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Cài đặt"
-            android:textColor="@android:color/white"
-            android:textSize="8sp" />
+            android:textColor="@color/primary_blue"
+            android:textSize="10sp" />
     </LinearLayout>
 
 </LinearLayout>

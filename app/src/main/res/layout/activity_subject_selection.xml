@@ -13,6 +13,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -21,7 +22,10 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/color_yellow"
             app:title="@string/title_subject_selection"
-            app:titleTextColor="@color/primary_blue" />
+            app:titleTextColor="@color/primary_blue"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:navigationIcon="@drawable/ic_back"
+            app:navigationIconTint="@color/primary_blue" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -36,18 +40,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/tvMajorGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/major_group_a"
-                android:textSize="24sp"
+                android:textSize="26sp"
                 android:textStyle="bold"
                 android:textColor="@color/primary_blue"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="24dp"
+                android:letterSpacing="0.02"/>
 
             <!-- Row 1 -->
             <LinearLayout
@@ -57,52 +64,91 @@
                 android:weightSum="3">
 
                 <!-- Math Card -->
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardMath"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/white" 
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
-                    <LinearLayout style="@style/SubjectCardContent">
-                        <ImageView style="@style/SubjectIcon" android:src="@drawable/ic_math" app:tint="@color/primary_blue"/>
-                        <TextView style="@style/SubjectTitle" android:text="@string/subject_math" android:textColor="@color/primary_blue"/>
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    app:rippleColor="@color/shadow_color">
+                    <LinearLayout 
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView 
+                            style="@style/SubjectIcon" 
+                            android:src="@drawable/ic_math" 
+                            app:tint="@color/primary_blue"/>
+                        <TextView 
+                            style="@style/SubjectTitle" 
+                            android:text="@string/subject_math" 
+                            android:textColor="@color/primary_blue"
+                            android:textSize="15sp"/>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <!-- Physics Card -->
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardPhysics"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="8dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
-                     <LinearLayout style="@style/SubjectCardContent">
-                        <ImageView style="@style/SubjectIcon" android:src="@drawable/ic_physics" app:tint="@color/primary_blue"/>
-                        <TextView style="@style/SubjectTitle" android:text="@string/subject_physics" android:textColor="@color/primary_blue"/>
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    app:rippleColor="@color/shadow_color">
+                    <LinearLayout 
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView 
+                            style="@style/SubjectIcon" 
+                            android:src="@drawable/ic_physics" 
+                            app:tint="@color/primary_blue"/>
+                        <TextView 
+                            style="@style/SubjectTitle" 
+                            android:text="@string/subject_physics" 
+                            android:textColor="@color/primary_blue"
+                            android:textSize="15sp"/>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <!-- English Card -->
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardEnglish"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="8dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
-                     <LinearLayout style="@style/SubjectCardContent">
-                        <ImageView style="@style/SubjectIcon" android:src="@drawable/ic_english" app:tint="@color/primary_blue"/>
-                        <TextView style="@style/SubjectTitle" android:text="@string/subject_english" android:textColor="@color/primary_blue"/>
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    app:rippleColor="@color/shadow_color">
+                    <LinearLayout 
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView 
+                            style="@style/SubjectIcon" 
+                            android:src="@drawable/ic_english" 
+                            app:tint="@color/primary_blue"/>
+                        <TextView 
+                            style="@style/SubjectTitle" 
+                            android:text="@string/subject_english" 
+                            android:textColor="@color/primary_blue"
+                            android:textSize="15sp"/>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 
