@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.GrammarQuizActivity">
+    tools:context=".Activity.ReadingQuizActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -17,22 +17,48 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/color_yellow"
-            app:title="Trắc nghiệm Ngữ pháp"
+            app:title="Bài đọc Unit 1"
             app:titleTextColor="@color/primary_blue" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGrammarQuestions"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="16dp"
-        android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmitGrammarQuiz"/>
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmitReadingQuiz">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvReadingPassage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:text="Nội dung bài đọc sẽ được hiển thị ở đây..." />
+
+            <View
+                style="@style/Divider"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReadingQuestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/btnSubmitGrammarQuiz"
+        android:id="@+id/btnSubmitReadingQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

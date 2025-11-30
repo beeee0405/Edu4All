@@ -29,7 +29,6 @@
         </activity>
         <activity android:name=".Activity.SubjectSelectionActivity" android:exported="false" />
         <activity android:name=".Activity.SubjectDetailActivity" android:exported="false" />
-        <activity android:name=".Activity.EnglishSubjectActivity" android:exported="false" />
         <activity android:name=".Activity.FlashcardActivity" android:exported="false" />
         <activity android:name=".Activity.WordMatchingActivity" android:exported="false" />
         <activity android:name=".Activity.SettingsActivity" android:exported="false" />
@@ -37,6 +36,9 @@
         <activity android:name=".Activity.SearchActivity" android:exported="false" />
         <activity android:name=".Activity.GrammarQuizActivity" android:exported="false" />
         <activity android:name=".Activity.UnitDetailActivity" android:exported="false" />
+        <activity android:name=".Activity.ExamActivity" android:exported="false" />
+        <activity android:name=".Activity.ReadingQuizActivity" android:exported="false" />
+        <activity android:name=".Activity.ListeningActivity" android:exported="false" />
 
     </application>
 

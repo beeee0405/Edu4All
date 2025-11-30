@@ -52,7 +52,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_lock_lock"
+                    android:src="@drawable/ic_lock"
                     app:tint="@color/primary_blue" />
                 <TextView
                     android:layout_width="0dp"
@@ -61,12 +61,12 @@
                     android:layout_marginStart="16dp"
                     android:text="@string/setting_change_password"
                     android:textSize="16sp"
-                    android:textColor="@color/section_title_text" />
+                    android:textColor="@color/text_primary" />
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@android:drawable/ic_media_play"
-                    app:tint="@color/color_text" />
+                    android:src="@drawable/ic_arrow_forward"
+                    app:tint="@color/text_secondary" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -77,6 +77,7 @@
             android:layout_marginTop="12dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,21 +87,24 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_day"
+                    android:src="@drawable/ic_dark_mode"
                     app:tint="@color/primary_blue" />
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tvDarkModeTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_dark_mode"
                         android:textSize="16sp"
-                        android:textColor="@color/section_title_text" />
+                        android:textColor="@color/text_primary" />
+
                     <TextView
                         android:id="@+id/tvDarkModeDescription"
                         android:layout_width="wrap_content"
@@ -108,8 +112,9 @@
                         android:layout_marginTop="4dp"
                         android:text="@string/setting_dark_mode_description"
                         android:textSize="13sp"
-                        android:textColor="@color/color_text" />
+                        android:textColor="@color/text_secondary" />
                 </LinearLayout>
+
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switchDarkMode"
                     android:layout_width="wrap_content"
@@ -119,17 +124,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/setting_logout"
+            style="@style/PrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="40dp"
             android:text="@string/setting_logout"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:backgroundTint="@color/subject_red"
-            app:cornerRadius="16dp"
-            app:icon="@android:drawable/ic_lock_power_off"
-            app:iconGravity="textStart"
-            app:iconPadding="8dp" />
+            app:icon="@drawable/ic_logout"
+            app:iconGravity="textStart"/>
 
     </LinearLayout>
 

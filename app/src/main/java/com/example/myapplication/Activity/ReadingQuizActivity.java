@@ -1,107 +1,121 @@
 package com.example.myapplication.Activity;
 
 import android.os.Bundle;
-import android.widget.*;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myapplication.Adapter.ReadingQuestionAdapter;
 import com.example.myapplication.Database.DBHelper;
-import com.example.myapplication.Model.Question2;
+import com.example.myapplication.Model.Question2; // We'll convert from this
 import com.example.myapplication.Model.Reading;
+import com.example.myapplication.Model.ReadingQuestion; // To this
 import com.example.myapplication.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReadingQuizActivity extends AppCompatActivity {
 
-    TextView txtReadingContent, tvQ1, tvQ2, tvQ3, tvQ4, tvQ5;
-    RadioGroup rgQ1, rgQ2, rgQ3, rgQ4, rgQ5;
-    Button btnSubmit;
+    private TextView tvReadingPassage;
+    private RecyclerView rvReadingQuestions;
+    private Button btnSubmitReadingQuiz;
+    private ReadingQuestionAdapter adapter;
 
-    DBHelper db;
-    List<Question2> list;
-    int unitId;
+    private DBHelper db;
+    private List<ReadingQuestion> questionList;
+    private int unitId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reading_quiz);
+        setContentView(R.layout.activity_reading_quiz);
 
-        unitId = getIntent().getIntExtra("unit_id", 1);
+        unitId = getIntent().getIntExtra("UNIT_ID", 1);
         db = new DBHelper(this);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Bài đọc Unit " + unitId);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         initViews();
+        loadContent();
+        setupRecyclerView();
 
-        Reading reading = db.getReading(unitId);
-        if (reading != null) {
-            txtReadingContent.setText(reading.content);
-        }
-
-        list = db.getQuestions(unitId);
-        if (list.size() < 5) {
-            Toast.makeText(this, "Không đủ câu hỏi!", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        loadQuestions();
-
-        btnSubmit.setOnClickListener(v -> checkScore());
+        btnSubmitReadingQuiz.setOnClickListener(v -> checkScore());
     }
 
     private void initViews() {
-        txtReadingContent = findViewById(R.id.txtReadingContent);
-
-        tvQ1 = findViewById(R.id.tvQ1);
-        tvQ2 = findViewById(R.id.tvQ2);
-        tvQ3 = findViewById(R.id.tvQ3);
-        tvQ4 = findViewById(R.id.tvQ4);
-        tvQ5 = findViewById(R.id.tvQ5);
-
-        rgQ1 = findViewById(R.id.rgQ1);
-        rgQ2 = findViewById(R.id.rgQ2);
-        rgQ3 = findViewById(R.id.rgQ3);
-        rgQ4 = findViewById(R.id.rgQ4);
-        rgQ5 = findViewById(R.id.rgQ5);
-
-        btnSubmit = findViewById(R.id.btnSubmit);
+        tvReadingPassage = findViewById(R.id.tvReadingPassage);
+        rvReadingQuestions = findViewById(R.id.rvReadingQuestions);
+        btnSubmitReadingQuiz = findViewById(R.id.btnSubmitReadingQuiz);
     }
 
-    private void loadQuestions() {
-        bindQuestion(tvQ1, rgQ1, list.get(0));
-        bindQuestion(tvQ2, rgQ2, list.get(1));
-        bindQuestion(tvQ3, rgQ3, list.get(2));
-        bindQuestion(tvQ4, rgQ4, list.get(3));
-        bindQuestion(tvQ5, rgQ5, list.get(4));
+    private void loadContent() {
+        Reading reading = db.getReading(unitId);
+        if (reading != null) {
+            tvReadingPassage.setText(reading.content);
+        }
+
+        // Convert old Question2 model to new ReadingQuestion model
+        List<Question2> oldQuestions = db.getQuestions(unitId);
+        questionList = new ArrayList<>();
+        for (Question2 oldQ : oldQuestions) {
+            List<String> options = Arrays.asList(oldQ.optionA, oldQ.optionB, oldQ.optionC, oldQ.optionD);
+            int correctIndex = -1;
+            if ("A".equals(oldQ.correct)) correctIndex = 0;
+            else if ("B".equals(oldQ.correct)) correctIndex = 1;
+            else if ("C".equals(oldQ.correct)) correctIndex = 2;
+            else if ("D".equals(oldQ.correct)) correctIndex = 3;
+
+            questionList.add(new ReadingQuestion(oldQ.getQuestionText2(), options, correctIndex));
+        }
     }
 
-    private void bindQuestion(TextView tv, RadioGroup rg, Question2 q) {
-        tv.setText(q.getQuestionText2());
-
-        ((RadioButton) rg.getChildAt(0)).setText("A. " + q.optionA);
-        ((RadioButton) rg.getChildAt(1)).setText("B. " + q.optionB);
-        ((RadioButton) rg.getChildAt(2)).setText("C. " + q.optionC);
-        ((RadioButton) rg.getChildAt(3)).setText("D. " + q.optionD);
+    private void setupRecyclerView() {
+        if (questionList.isEmpty()) {
+            Toast.makeText(this, "Không có câu hỏi cho bài đọc này!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        adapter = new ReadingQuestionAdapter(questionList);
+        rvReadingQuestions.setLayoutManager(new LinearLayoutManager(this));
+        rvReadingQuestions.setAdapter(adapter);
     }
 
     private void checkScore() {
         int score = 0;
-
-        if (isCorrect(rgQ1, list.get(0))) score++;
-        if (isCorrect(rgQ2, list.get(1))) score++;
-        if (isCorrect(rgQ3, list.get(2))) score++;
-        if (isCorrect(rgQ4, list.get(3))) score++;
-        if (isCorrect(rgQ5, list.get(4))) score++;
-
-        Toast.makeText(this, "Bạn đúng " + score + "/5 câu", Toast.LENGTH_LONG).show();
+        for (ReadingQuestion question : questionList) {
+            if (question.getUserAnswerIndex() == question.getCorrectOptionIndex()) {
+                score++;
+            }
+        }
+        
+        new AlertDialog.Builder(this)
+            .setTitle("Kết quả")
+            .setMessage("Bạn đã trả lời đúng " + score + "/" + questionList.size() + " câu.")
+            .setPositiveButton("Làm lại", (dialog, which) -> {
+                // Reset and reload
+                loadContent(); 
+                setupRecyclerView();
+            })
+            .setNegativeButton("Thoát", (dialog, which) -> finish())
+            .setCancelable(false)
+            .show();
     }
 
-    private boolean isCorrect(RadioGroup rg, Question2 q) {
-        int checkedId = rg.getCheckedRadioButtonId();
-        if (checkedId == -1) return false;
-
-        RadioButton rb = findViewById(checkedId);
-
-        String chosen = rb.getText().toString().substring(0, 1).toUpperCase();
-
-        return chosen.equals(q.correct);
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

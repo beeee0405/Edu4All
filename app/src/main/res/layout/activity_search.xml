@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/light_gray_background"
     tools:context=".Activity.SearchActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,42 +12,46 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
+        <!-- We will use a custom layout for the toolbar to include an EditText -->
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/color_yellow"
-            app:title="@string/title_activity_search"
-            app:titleTextColor="@color/primary_blue" />
+            android:background="@color/white"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="Tìm kiếm bài học, đề thi..."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <EditText
-        android:id="@+id/etSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="@string/search_hint"
-        android:padding="12dp"
-        android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearchResults"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:paddingHorizontal="16dp"
+        android:padding="8dp"
         android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/etSearch"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
-        tools:listitem="@layout/list_item_chapter" />
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <com.example.myapplication.Component.CustomBottomNav
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvNoResults"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:text="Không tìm thấy kết quả nào."
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

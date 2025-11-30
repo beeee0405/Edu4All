@@ -18,14 +18,16 @@ public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ChapterV
 
     private List<Chapter> chapterList;
     private final OnChapterClickListener listener;
+    private String currentTab;
 
-    // Interface for click events
+    // CORRECTED: The interface now provides both the item and its position
     public interface OnChapterClickListener {
-        void onChapterClick(Chapter chapter);
+        void onChapterClick(Chapter chapter, int position);
     }
 
-    public ChapterAdapter(List<Chapter> chapterList, OnChapterClickListener listener) {
+    public ChapterAdapter(List<Chapter> chapterList, String currentTab, OnChapterClickListener listener) {
         this.chapterList = chapterList;
+        this.currentTab = currentTab;
         this.listener = listener;
     }
 
@@ -39,7 +41,7 @@ public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ChapterV
     @Override
     public void onBindViewHolder(@NonNull ChapterViewHolder holder, int position) {
         Chapter chapter = chapterList.get(position);
-        holder.bind(chapter, listener);
+        holder.bind(chapter, currentTab, listener);
     }
 
     @Override
@@ -48,8 +50,7 @@ public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ChapterV
     }
 
     public static class ChapterViewHolder extends RecyclerView.ViewHolder {
-        TextView tvChapterTitle;
-        TextView tvLessonCount;
+        TextView tvChapterTitle, tvLessonCount, btnLearnNow;
         ProgressBar progressBar;
 
         public ChapterViewHolder(@NonNull View itemView) {
@@ -57,13 +58,29 @@ public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ChapterV
             tvChapterTitle = itemView.findViewById(R.id.tvChapterTitle);
             tvLessonCount = itemView.findViewById(R.id.tvLessonCount);
             progressBar = itemView.findViewById(R.id.progressBar);
+            btnLearnNow = itemView.findViewById(R.id.btnLearnNow);
         }
 
-        public void bind(final Chapter chapter, final OnChapterClickListener listener) {
+        public void bind(final Chapter chapter, String currentTab, final OnChapterClickListener listener) {
             tvChapterTitle.setText(chapter.getTitle());
             tvLessonCount.setText(chapter.getLessonCount());
             progressBar.setProgress(chapter.getProgress());
-            itemView.setOnClickListener(v -> listener.onChapterClick(chapter));
+
+            if ("Exam".equals(currentTab) || "QuickGame".equals(currentTab)) {
+                btnLearnNow.setText(R.string.do_now);
+            } else {
+                btnLearnNow.setText(R.string.learn_now);
+            }
+
+            // CORRECTED: The click listener now passes the adapter position as well
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onChapterClick(chapter, position);
+                    }
+                }
+            });
         }
     }
 }

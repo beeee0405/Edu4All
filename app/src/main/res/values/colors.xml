@@ -1,56 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Primary Color Palette -->
+    <color name="primary_blue">#007BFF</color>
+    <color name="primary_blue_dark">#0056b3</color>
+    <color name="color_yellow">#FFC107</color>
 
-    <!-- Màu chính hiện có -->
-    <color name="color_yellow">#FFD700</color>
-    <color name="color_yellow_light">#FFF176</color>
-    <color name="color_yellow_dark">#FFC107</color>
-    <color name="color_blue">#004AAD</color>
-    <color name="color_text">#666666</color>
-    <color name="color_text_secondary">#9E9E9E</color>
+    <!-- UI Colors -->
+    <color name="light_gray_background">#F8F9FA</color>
     <color name="white">#FFFFFF</color>
-    <color name="primary_blue">#0040C1</color>
-    <color name="primary_blue_light">#5C6BC0</color>
-    <color name="primary_blue_dark">#002984</color>
-
-    <!-- Subject Colors - Enhanced with gradients support -->
-    <color name="subject_red">#EF5350</color>
-    <color name="subject_red_dark">#C62828</color>
-    <color name="subject_blue">#42A5F5</color>
-    <color name="subject_blue_dark">#1565C0</color>
-    <color name="subject_orange">#FFA726</color>
-    <color name="subject_orange_dark">#EF6C00</color>
-    <color name="subject_teal">#26A69A</color>
-    <color name="subject_teal_dark">#00695C</color>
-    <color name="subject_green">#66BB6A</color>
-    <color name="subject_green_dark">#2E7D32</color>
-    <color name="subject_brown">#8D6E63</color>
-    <color name="subject_brown_dark">#4E342E</color>
-
-    <!-- Nền -->
-    <color name="light_gray_background">#FAFAFA</color>
-    <color name="card_background">#FFFFFF</color>
-    <color name="divider_color">#E0E0E0</color>
-
-    <!-- Text màu đỏ đậm -->
-    <color name="dark_red_text">#C62828</color>
-
-    <!-- ⭐ Các màu bổ sung (layout mới cần dùng) -->
     <color name="black">#000000</color>
-    <color name="gray">#888888</color>
-    <color name="section_title_text">#333333</color>
 
-    <!-- Màu nhấn & màu chính dùng cho style PracticeButton -->
-    <color name="primary_color">#3F51B5</color>
-    <color name="accent_color">#FF9800</color>
+    <!-- Text Colors -->
+    <color name="text_primary">#212529</color>
+    <color name="text_secondary">#6C757D</color>
+    <color name="dark_red_text">#721c24</color>
+    <color name="color_text">#212529</color> <!-- Added missing color -->
 
-    <!-- Success/Error colors -->
-    <color name="success_green">#4CAF50</color>
-    <color name="error_red">#F44336</color>
-    <color name="warning_orange">#FF9800</color>
-
-    <!-- Shadow and overlay -->
-    <color name="shadow_color">#1A000000</color>
-    <color name="overlay_color">#40000000</color>
+    <!-- Subject/Card Colors -->
+    <color name="subject_red">#DC3545</color>
+    <color name="subject_blue">#17A2B8</color>
+    <color name="subject_orange">#FD7E14</color>
+    <color name="subject_teal">#20C997</color>
+    <color name="subject_green">#28A745</color> <!-- Added missing color -->
+    <color name="subject_brown">#6F4E37</color> <!-- Added missing color -->
 
 </resources>

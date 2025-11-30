@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/light_gray_background"
     tools:context=".Activity.UnitDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,7 +24,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
@@ -35,43 +37,89 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Vocabulary Section -->
+            <ImageView
+                android:id="@+id/imgUnitBanner"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop" 
+                android:layout_marginBottom="16dp"/>
+
             <TextView
                 style="@style/SectionTitle"
-                android:text="@string/unit_vocabulary"/>
+                android:text="Vocabulary" />
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvVocabulary"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nội dung từ vựng sẽ được hiển thị ở đây..."/>
+                android:text="Nội dung từ vựng sẽ hiển thị ở đây..."/>
+
             <Button
                 android:id="@+id/btnPracticeVocabulary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/practice_vocabulary"/>
+                android:text="Thực hành từ vựng"
+                android:layout_marginTop="8dp" />
 
-            <!-- Separator -->
             <View style="@style/Divider"/>
 
-            <!-- Grammar Section -->
             <TextView
                 style="@style/SectionTitle"
-                android:text="@string/unit_grammar"/>
+                android:text="Grammar" />
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvGrammar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nội dung ngữ pháp sẽ được hiển thị ở đây..."/>
+                android:text="Nội dung ngữ pháp sẽ hiển thị ở đây..."/>
+
             <Button
                 android:id="@+id/btnPracticeGrammar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/practice_grammar"/>
+                android:text="Thực hành ngữ pháp"
+                android:layout_marginTop="8dp" />
 
-            <!-- Add Reading and Listening sections similarly -->
+            <View style="@style/Divider"/>
+
+            <TextView
+                style="@style/SectionTitle"
+                android:text="Reading" />
+
+            <TextView
+                android:id="@+id/tvReading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nội dung đọc hiểu..."/>
+
+            <Button
+                android:id="@+id/btnPracticeReading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thực hành đọc hiểu"
+                android:layout_marginTop="8dp" />
+
+            <View style="@style/Divider"/>
+
+            <TextView
+                style="@style/SectionTitle"
+                android:text="Listening" />
+
+            <TextView
+                android:id="@+id/tvListen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nội dung nghe sẽ hiển thị ở đây..."/>
+
+            <Button
+                android:id="@+id/btnPlayAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nghe audio"
+                android:layout_marginTop="8dp" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.example.myapplication.Component.CustomBottomNav
         android:id="@+id/bottomNav"

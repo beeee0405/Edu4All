@@ -1,6 +1,7 @@
 package com.example.myapplication.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -14,6 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Adapter.ChapterAdapter;
+import com.example.myapplication.Database.AppDatabase;
+import com.example.myapplication.Entity.ExamEntity;
+import com.example.myapplication.Entity.UnitEntity;
 import com.example.myapplication.Model.Chapter;
 import com.example.myapplication.R;
 
@@ -27,7 +31,7 @@ public class SubjectDetailActivity extends AppCompatActivity {
     private ChapterAdapter chapterAdapter;
     private List<Chapter> chapterList;
     private String currentSubject;
-    private String currentTab = "Theory"; // Keep track of the current tab
+    private String currentTab = "Theory";
 
     private TextView tabTheory, tabDocument, tabExam, tabQuickGame;
 
@@ -58,55 +62,56 @@ public class SubjectDetailActivity extends AppCompatActivity {
         }
 
         setupTabListeners();
-
         loadChapterList(currentTab);
-        updateTabSelection(currentTab);
     }
 
     private void setupTabListeners() {
-        tabTheory.setOnClickListener(v -> {
-            currentTab = "Theory";
-            loadChapterList(currentTab);
-            updateTabSelection(currentTab);
-        });
-        tabDocument.setOnClickListener(v -> {
-            currentTab = "Document";
-            loadChapterList(currentTab);
-            updateTabSelection(currentTab);
-        });
-        tabExam.setOnClickListener(v -> {
-            currentTab = "Exam";
-            loadChapterList(currentTab);
-            updateTabSelection(currentTab);
-        });
-        tabQuickGame.setOnClickListener(v -> {
-            currentTab = "QuickGame";
-            loadChapterList(currentTab);
-            updateTabSelection(currentTab);
-        });
+        tabTheory.setOnClickListener(v -> loadChapterList("Theory"));
+        tabDocument.setOnClickListener(v -> loadChapterList("Document"));
+        tabExam.setOnClickListener(v -> loadChapterList("Exam"));
+        tabQuickGame.setOnClickListener(v -> loadChapterList("QuickGame"));
     }
 
     private void loadChapterList(String tab) {
+        currentTab = tab;
+        updateTabSelection(tab);
         chapterList = new ArrayList<>();
+        AppDatabase db = AppDatabase.getInstance(this);
+
         if ("Anh".equals(currentSubject)) {
             switch (tab) {
                 case "Theory":
-                    chapterList.add(new Chapter("Unit 1: Family Life", "15 bài học", 50));
-                    chapterList.add(new Chapter("Unit 2: Your Body and You", "12 bài học", 20));
+                    List<UnitEntity> units = db.unitDao().getAllUnits();
+                    for (UnitEntity unit : units) {
+                        chapterList.add(new Chapter(unit.getId(), unit.getTitle(), unit.getDescription(), unit.getProgress()));
+                    }
+                    break;
+                case "Exam":
+                    List<ExamEntity> exams = db.examDao().getAllExams();
+                    for (ExamEntity exam : exams) {
+                        chapterList.add(new Chapter(exam.getId(), exam.getTitle(), "50 câu", 0));
+                    }
                     break;
                 case "QuickGame":
-                    chapterList.add(new Chapter("Flashcards", "Học từ vựng qua thẻ", 0));
-                    chapterList.add(new Chapter("Word Matching", "Nối từ với nghĩa", 0));
-                    chapterList.add(new Chapter("Grammar Quiz", "Trắc nghiệm ngữ pháp", 0));
+                    chapterList.add(new Chapter(0, "Flashcards", "Học từ vựng", 0));
+                    chapterList.add(new Chapter(0, "Word Matching", "Nối từ", 0));
+                    chapterList.add(new Chapter(0, "Grammar Quiz", "Trắc nghiệm", 0));
                     break;
-                // Add other cases for Document, Exam...
             }
-        } else {
-             // Logic for Math, Physics... (unchanged)
         }
 
-        chapterAdapter = new ChapterAdapter(chapterList, chapter -> {
-            if ("QuickGame".equals(tab)) {
+        chapterAdapter = new ChapterAdapter(chapterList, currentTab, (chapter, position) -> {
+            if ("Exam".equals(currentTab)) {
+                Intent intent = new Intent(this, ExamActivity.class);
+                intent.putExtra("EXAM_ID", chapter.getId());
+                intent.putExtra("EXAM_TITLE", chapter.getTitle());
+                startActivity(intent);
+            } else if ("Theory".equals(currentTab) && "Anh".equals(currentSubject)) {
+                // CORRECTED: Passing the real Unit ID from the chapter object
+                Intent intent = new Intent(SubjectDetailActivity.this, UnitDetailActivity.class);
+                intent.putExtra("UNIT_ID", chapter.getId());
+                startActivity(intent);
+            } else if ("QuickGame".equals(currentTab)) {
                 if ("Flashcards".equals(chapter.getTitle())) {
                     startActivity(new Intent(this, FlashcardActivity.class));
                 } else if ("Word Matching".equals(chapter.getTitle())) {
@@ -114,21 +119,28 @@ public class SubjectDetailActivity extends AppCompatActivity {
                 } else if ("Grammar Quiz".equals(chapter.getTitle())) {
                     startActivity(new Intent(this, GrammarQuizActivity.class));
                 }
-            } else if ("Theory".equals(tab) && "Anh".equals(currentSubject)) {
-                Intent intent = new Intent(this, UnitDetailActivity.class);
-                intent.putExtra("UNIT_TITLE", chapter.getTitle());
-                startActivity(intent);
             }
         });
         rvChapters.setAdapter(chapterAdapter);
     }
 
     private void updateTabSelection(String selectedTab) {
-        // ... (unchanged)
+        updateTabTextStyle(tabTheory, "Theory".equals(selectedTab));
+        updateTabTextStyle(tabDocument, "Document".equals(selectedTab));
+        updateTabTextStyle(tabExam, "Exam".equals(selectedTab));
+        updateTabTextStyle(tabQuickGame, "QuickGame".equals(selectedTab));
     }
 
     private void updateTabTextStyle(TextView tab, boolean isSelected) {
-        // ... (unchanged)
+        if (isSelected) {
+            tab.setTypeface(null, Typeface.BOLD);
+            tab.setTextColor(Color.BLUE);
+            tab.setBackgroundColor(Color.parseColor("#E0E0E0"));
+        } else {
+            tab.setTypeface(null, Typeface.NORMAL);
+            tab.setTextColor(Color.BLACK);
+            tab.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     @Override

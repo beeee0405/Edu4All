@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="8dp"
-    app:cardCornerRadius="16dp"
-    android:fitsSystemWindows="true"
-    app:cardElevation="4dp"
-    app:rippleColor="@color/shadow_color">
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="18dp">
+        android:padding="16dp">
 
         <ImageView
-            android:id="@+id/ivChapterIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:tint="@color/primary_blue"
+            android:id="@+id/imgIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_book" 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,53 +26,49 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="@color/primary_blue"
+            android:textColor="@color/text_primary"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:letterSpacing="0.01"
+            app:layout_constraintStart_toEndOf="@id/imgIcon"
             app:layout_constraintEnd_toStartOf="@+id/btnLearnNow"
-            app:layout_constraintStart_toEndOf="@+id/ivChapterIcon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Chapter Title Here" />
+            tools:text="Unit 1: Life Stories" />
 
         <TextView
             android:id="@+id/tvLessonCount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="@color/color_text"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@+id/tvChapterTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvChapterTitle"
-            tools:text="X lessons" />
-
-        <!-- ProgressBar for chapter progress -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="8dp"
-            android:layout_marginTop="10dp"
-            android:progressDrawable="@drawable/bg_progress_bar"
-            app:layout_constraintEnd_toEndOf="@+id/tvChapterTitle"
-            app:layout_constraintStart_toStartOf="@+id/tvChapterTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvLessonCount"
-            tools:progress="60" />
+            android:textColor="@color/text_secondary"
+            app:layout_constraintStart_toStartOf="@id/tvChapterTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvChapterTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvChapterTitle"
+            tools:text="5 bài học" />
 
         <TextView
             android:id="@+id/btnLearnNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_button_yellow_rounded"
-            android:paddingHorizontal="18dp"
-            android:paddingVertical="10dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
             android:text="@string/learn_now"
-            android:textColor="@color/primary_blue"
-            android:textSize="14sp"
+            android:textColor="@color/primary_blue" 
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="8dp"
+            android:progress="50"
+            app:layout_constraintTop_toBottomOf="@+id/tvLessonCount"
+            app:layout_constraintStart_toStartOf="@id/tvChapterTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvChapterTitle"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

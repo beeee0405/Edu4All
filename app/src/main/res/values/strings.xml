@@ -22,8 +22,9 @@
     <string name="tab_exam">Đề thi</string>
     <string name="tab_quick_game">Quick game</string>
 
-    <!-- Chapter List Item -->
+    <!-- List Item Buttons -->
     <string name="learn_now">Học ngay</string>
+    <string name="do_now">Làm ngay</string>
 
     <!-- Unit Detail Screen -->
     <string name="title_activity_unit_detail">Unit 1</string>
@@ -36,7 +37,7 @@
     <string name="practice_reading">Thực hành đọc hiểu</string>
     <string name="listen_audio">Nghe audio</string>
 
-    <!-- English Subject Screen (Legacy) -->
+    <!-- English Subject Screen (Legacy but needed for layout) -->
     <string name="title_subject_english">Môn Tiếng Anh</string>
     <string name="title_subject_english_unit">Unit 1</string>
     <string name="english_section_games">Trò chơi ôn luyện</string>
@@ -60,6 +61,12 @@
     <!-- Grammar Quiz Game -->
     <string name="title_activity_grammar_quiz">Trắc nghiệm Ngữ pháp</string>
     <string name="check_answer">Kiểm tra</string>
+
+    <!-- Exam Screen -->
+    <string name="title_activity_exam">Làm bài thi</string>
+    <string name="submit_exam">Nộp bài</string>
+    <string name="next_question">Câu tiếp</string>
+    <string name="prev_question">Câu trước</string>
 
     <!-- Daily Challenge -->
     <string name="daily_challenge_title">Thử thách hàng ngày</string>
