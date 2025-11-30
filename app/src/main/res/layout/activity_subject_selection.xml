@@ -75,7 +75,10 @@
                     app:cardElevation="6dp"
                     app:rippleColor="@color/shadow_color">
                     <LinearLayout 
-                        style="@style/SubjectCardContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:padding="24dp">
                         <ImageView 
                             style="@style/SubjectIcon" 
@@ -101,7 +104,10 @@
                     app:cardElevation="6dp"
                     app:rippleColor="@color/shadow_color">
                     <LinearLayout 
-                        style="@style/SubjectCardContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:padding="24dp">
                         <ImageView 
                             style="@style/SubjectIcon" 
@@ -127,7 +133,10 @@
                     app:cardElevation="6dp"
                     app:rippleColor="@color/shadow_color">
                     <LinearLayout 
-                        style="@style/SubjectCardContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:padding="24dp">
                         <ImageView 
                             style="@style/SubjectIcon" 

@@ -227,9 +227,8 @@
                         android:textColor="@color/primary_blue"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:drawableStart="@drawable/ic_challenge"
-                        android:drawablePadding="10dp"
-                        tools:ignore="UseCompatTextViewDrawableXml" />
+                        app:drawableStartCompat="@drawable/ic_challenge"
+                        android:drawablePadding="10dp" />
 
                     <TextView
                         android:id="@+id/tvChallengeQuestion"
