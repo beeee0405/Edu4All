@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/light_gray_background"
     tools:context=".Activity.ExamActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/color_yellow"
-            tools:layout_editor_absoluteX="36dp"
-            tools:layout_editor_absoluteY="240dp">
+            app:title="@string/title_activity_exam"
+            app:titleTextColor="@color/primary_blue"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Title">
 
             <TextView
                 android:id="@+id/tvTimer"
@@ -35,42 +39,65 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/tvQuestionNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/questionCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="240dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/card_background"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-        tools:text="Câu 1:" />
+        app:layout_constraintBottom_toTopOf="@id/navigationLayout">
 
-    <TextView
-        android:id="@+id/tvQuestionText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="212dp"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvQuestionNumber"
-        tools:text="Choose the word whose underlined part is pronounced differently from that of the others." />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <RadioGroup
-        android:id="@+id/radioGroupAnswers"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvQuestionText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <!-- RadioButtons will be added dynamically -->
-    </RadioGroup>
+            <TextView
+                android:id="@+id/tvQuestionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_blue"
+                tools:text="Câu 1:" />
+
+            <TextView
+                android:id="@+id/tvQuestionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:textColor="@color/color_text"
+                android:lineSpacingExtra="4dp"
+                tools:text="Choose the word whose underlined part is pronounced differently from that of the others." />
+
+            <RadioGroup
+                android:id="@+id/radioGroupAnswers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+                <!-- RadioButtons will be added dynamically -->
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmitExam"
+        style="@style/PrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/submit_exam"
+        android:visibility="gone"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toTopOf="@id/navigationLayout"/>
 
     <LinearLayout
         android:id="@+id/navigationLayout"
@@ -80,32 +107,26 @@
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPrev"
+            style="@style/SecondaryButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="@string/prev_question"/>
+            android:text="@string/prev_question"
+            app:cornerRadius="12dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
+            style="@style/PrimaryButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="@string/next_question"/>
+            android:text="@string/next_question"
+            app:cornerRadius="12dp"/>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnSubmitExam"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="@string/submit_exam"
-        android:visibility="gone" 
-        app:layout_constraintBottom_toTopOf="@id/navigationLayout"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

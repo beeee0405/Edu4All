@@ -9,10 +9,13 @@
     <color name="light_gray_background">#F8F9FA</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="divider_color">#E9ECEF</color>
 
     <!-- Text Colors -->
     <color name="text_primary">#212529</color>
     <color name="text_secondary">#6C757D</color>
+    <color name="color_text_secondary">#6C757D</color>
     <color name="dark_red_text">#721c24</color>
     <color name="color_text">#212529</color>
 
@@ -23,6 +26,15 @@
     <color name="subject_teal">#20C997</color>
     <color name="subject_green">#28A745</color>
     <color name="subject_brown">#6F4E37</color>
+
+    <!-- Shadow and overlay -->
+    <color name="shadow_color">#40000000</color>
+    <color name="overlay_color">#60000000</color>
+
+    <!-- Success/Error colors -->
+    <color name="success_green">#28A745</color>
+    <color name="error_red">#DC3545</color>
+    <color name="warning_orange">#FD7E14</color>
 
     <!-- Additional helpful colors -->
     <color name="social_button_bg">#FFFFFFFF</color>

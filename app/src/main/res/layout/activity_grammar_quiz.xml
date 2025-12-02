@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/light_gray_background"
     tools:context=".Activity.GrammarQuizActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -17,8 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/color_yellow"
-            app:title="Trắc nghiệm Ngữ pháp"
-            app:titleTextColor="@color/primary_blue" />
+            app:title="@string/title_activity_grammar_quiz"
+            app:titleTextColor="@color/primary_blue"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Title" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -28,16 +32,18 @@
         android:layout_height="0dp"
         android:padding="16dp"
         android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         app:layout_constraintBottom_toTopOf="@+id/btnSubmitGrammarQuiz"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSubmitGrammarQuiz"
+        style="@style/PrimaryButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_margin="16dp"
-        android:padding="16dp"
-        android:text="Nộp bài"
+        android:text="@string/submit_answer"
+        app:cornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
