@@ -14,14 +14,17 @@
     <color name="text_primary">#212529</color>
     <color name="text_secondary">#6C757D</color>
     <color name="dark_red_text">#721c24</color>
-    <color name="color_text">#212529</color> <!-- Added missing color -->
+    <color name="color_text">#212529</color>
 
     <!-- Subject/Card Colors -->
     <color name="subject_red">#DC3545</color>
     <color name="subject_blue">#17A2B8</color>
     <color name="subject_orange">#FD7E14</color>
     <color name="subject_teal">#20C997</color>
-    <color name="subject_green">#28A745</color> <!-- Added missing color -->
-    <color name="subject_brown">#6F4E37</color> <!-- Added missing color -->
+    <color name="subject_green">#28A745</color>
+    <color name="subject_brown">#6F4E37</color>
 
+    <!-- Additional helpful colors -->
+    <color name="social_button_bg">#FFFFFFFF</color>
+    <color name="social_button_border">#E9ECEF</color>
 </resources>
