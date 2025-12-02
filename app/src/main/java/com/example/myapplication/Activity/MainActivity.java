@@ -53,21 +53,29 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        UserEntity user = AppDatabase.getInstance(this).userDao().getUserByUsername(username);
+        try {
+            UserEntity user = AppDatabase.getInstance(this).userDao().getUserByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
-            Toast.makeText(this, "Đăng nhập thành công", LENGTH_SHORT).show();
-            
-            // Save user stats to SharedPreferences
-            SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
-            sharedPrefManager.saveUsername(user.getUsername());
+            if (user != null && user.getPassword().equals(password)) {
+                // Save user stats to SharedPreferences
+                SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+                sharedPrefManager.saveUsername(user.getUsername());
 
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent.putExtra("user", user);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(this, "Sai tên đăng nhập hoặc mật khẩu", LENGTH_SHORT).show();
+                // Show success message before navigating
+                Toast.makeText(this, "Đăng nhập thành công", LENGTH_SHORT).show();
+                
+                // Navigate to HomeActivity
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", user);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Sai tên đăng nhập hoặc mật khẩu", LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Đã xảy ra lỗi khi đăng nhập", LENGTH_SHORT).show();
         }
     }
 
