@@ -6,12 +6,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity(tableName = "users")
-@Getter
-@Setter
 public class UserEntity implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -35,5 +30,55 @@ public class UserEntity implements Serializable {
         this.password = password;
         this.level = 1; // Start at level 1
         this.xp = 0;    // Start with 0 XP
+    }
+
+    // Getters
+    public int getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    // Setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
     }
 }
