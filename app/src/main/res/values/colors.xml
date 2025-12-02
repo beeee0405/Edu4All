@@ -4,6 +4,7 @@
     <color name="primary_blue">#007BFF</color>
     <color name="primary_blue_dark">#0056b3</color>
     <color name="color_yellow">#FFC107</color>
+    <color name="color_yellow_dark">#FFA000</color>
 
     <!-- UI Colors -->
     <color name="light_gray_background">#F8F9FA</color>
