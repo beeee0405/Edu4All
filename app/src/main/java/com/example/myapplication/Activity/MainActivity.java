@@ -5,10 +5,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 // Show success message before navigating
                 Toast.makeText(this, "Đăng nhập thành công", LENGTH_SHORT).show();
                 
-                // Navigate to HomeActivity
+                // CORRECTED: Navigate to HomeActivity as intended
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user", user);
