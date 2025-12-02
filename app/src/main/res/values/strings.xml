@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Edu4All</string>
     <string name="welcome_user">Xin chào, User!</string>
     <string name="graduate_with_edu4all">Tốt nghiệp cùng Edu4All</string>
     <string name="choose_your_major_group">Lựa chọn khối ngành</string>
@@ -8,6 +8,27 @@
     <string name="major_group_b">Khối B</string>
     <string name="major_group_c">Khối C</string>
     <string name="major_group_d">Khối D</string>
+
+    <!-- Home Screen New Features -->
+    <string name="notifications">Thông báo</string>
+    <string name="streak_days">Ngày liên tiếp</string>
+    <string name="lessons_completed">Bài đã học</string>
+    <string name="achievements">Thành tích</string>
+    <string name="quick_actions">Truy cập nhanh</string>
+    <string name="flashcards">Flashcards</string>
+    <string name="quick_quiz">Trắc nghiệm</string>
+    <string name="word_match">Nối từ</string>
+    <string name="tip_of_day">Mẹo học tập</string>
+    <string name="motivational_tip_default">Hãy ôn tập mỗi ngày để đạt kết quả tốt nhất trong kỳ thi!</string>
+
+    <!-- Motivational Tips Array -->
+    <string-array name="motivational_tips">
+        <item>Hãy ôn tập mỗi ngày để đạt kết quả tốt nhất trong kỳ thi!</item>
+        <item>Học một chút mỗi ngày tốt hơn học dồn trước kỳ thi.</item>
+        <item>Nghỉ ngơi đầy đủ giúp não ghi nhớ tốt hơn.</item>
+        <item>Đặt mục tiêu nhỏ và hoàn thành từng bước một.</item>
+        <item>Ôn lại kiến thức cũ trước khi học kiến thức mới.</item>
+    </string-array>
 
     <!-- Subject Selection Screen -->
     <string name="title_subject_selection">Chọn môn</string>
