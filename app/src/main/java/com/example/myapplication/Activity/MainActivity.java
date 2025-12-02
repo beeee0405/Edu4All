@@ -61,20 +61,21 @@ public class MainActivity extends AppCompatActivity {
                 SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
                 sharedPrefManager.saveUsername(user.getUsername());
 
+                // Show success message before navigating
+                Toast.makeText(this, "Đăng nhập thành công", LENGTH_SHORT).show();
+                
                 // Navigate to HomeActivity
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user", user);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                
-                Toast.makeText(this, "Đăng nhập thành công", LENGTH_SHORT).show();
                 finish();
             } else {
                 Toast.makeText(this, "Sai tên đăng nhập hoặc mật khẩu", LENGTH_SHORT).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Đã xảy ra lỗi: " + e.getMessage(), LENGTH_SHORT).show();
+            Toast.makeText(this, "Đã xảy ra lỗi khi đăng nhập", LENGTH_SHORT).show();
         }
     }
 
