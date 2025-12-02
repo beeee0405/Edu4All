@@ -34,14 +34,6 @@ public class HomeActivity extends AppCompatActivity {
     private static final int XP_FOR_CORRECT_ANSWER = 50;
     private static final int XP_TO_LEVEL_UP = 100;
 
-    private static final String[] MOTIVATIONAL_TIPS = {
-        "Hãy ôn tập mỗi ngày để đạt kết quả tốt nhất trong kỳ thi!",
-        "Học một chút mỗi ngày tốt hơn học dồn trước kỳ thi.",
-        "Nghỉ ngơi đầy đủ giúp não ghi nhớ tốt hơn.",
-        "Đặt mục tiêu nhỏ và hoàn thành từng bước một.",
-        "Ôn lại kiến thức cũ trước khi học kiến thức mới."
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,8 +107,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void showRandomTip() {
+        String[] tips = getResources().getStringArray(R.array.motivational_tips);
         Random random = new Random();
-        String tip = MOTIVATIONAL_TIPS[random.nextInt(MOTIVATIONAL_TIPS.length)];
+        String tip = tips[random.nextInt(tips.length)];
         tvMotivationalTip.setText(tip);
     }
 
@@ -135,6 +128,11 @@ public class HomeActivity extends AppCompatActivity {
         updateXpUI();
     }
 
+    private void navigateToActivity(Class<?> targetActivity) {
+        Intent intent = new Intent(HomeActivity.this, targetActivity);
+        startActivity(intent);
+    }
+
     private void setupListeners() {
         findViewById(R.id.cardKhoiA).setOnClickListener(v -> openSubjectSelection("A"));
         findViewById(R.id.cardKhoiB).setOnClickListener(v -> openSubjectSelection("B"));
@@ -142,20 +140,9 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.cardKhoiD).setOnClickListener(v -> openSubjectSelection("D"));
 
         // Quick action buttons
-        btnQuickFlashcard.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, FlashcardActivity.class);
-            startActivity(intent);
-        });
-
-        btnQuickQuiz.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, GrammarQuizActivity.class);
-            startActivity(intent);
-        });
-
-        btnQuickWordMatch.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, WordMatchingActivity.class);
-            startActivity(intent);
-        });
+        btnQuickFlashcard.setOnClickListener(v -> navigateToActivity(FlashcardActivity.class));
+        btnQuickQuiz.setOnClickListener(v -> navigateToActivity(GrammarQuizActivity.class));
+        btnQuickWordMatch.setOnClickListener(v -> navigateToActivity(WordMatchingActivity.class));
 
         // Notification button
         btnNotification.setOnClickListener(v -> {
